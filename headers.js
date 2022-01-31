@@ -4,6 +4,14 @@
 
 const DEFAULT_PORT = 5000;
 
+const scriptUrlPatterns = [
+    '*'
+]
+
+
+
+
+
 var tabId = parseInt(window.location.search.substring(1));
 
 function reloadScript() {
@@ -34,10 +42,17 @@ function doStuffWithDom(domContent) {
     console.log('I received the following DOM content:\n' + domContent);
 }
 
+
 window.addEventListener("load", function () {
     chrome.debugger.sendCommand({
         tabId: tabId
     }, "Fetch.enable");
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     chrome.debugger.onEvent.addListener(onEvent);
     document.getElementById("cookieNumber").innerText = "0";
     document.getElementById("port").value = DEFAULT_PORT.toString();
@@ -100,20 +115,51 @@ const fullfillRequest = (debuggeeId, requestId, reqHeaders) => {
 
 
 
-// TARGET HARVESTING
+// NIKE HARVESTING
 function onEvent(debuggeeId, message, params) {
     if (tabId != debuggeeId.tabId)
         return;
-
     // Gets the port from the extension pop out window
     var port = document.getElementById("port").value;
 
     // If the request is a POST request and the URL the request is going to contains the start of the nike login, it will run
     if (message == "Fetch.requestPaused" && params.request.method == "POST" && params.request.url.startsWith('https://s3.nikecdn.com/login')) {
+
+
+        // At this point, the login request is ready to be sent to nike.com, We must now complete the request --> Get the request id --> use request id to get request body
+        console.log(params)
+        chrome.debugger.sendCommand(
+            {
+                tabId: tabId
+            },
+            "Fetch.fulfillRequest",
+            {
+                requestId: params.requestId,
+                responseCode: 200
+            },
+            () => {
+                const responseBody = chrome.debugger.sendCommand(
+                    {
+                        tabId: tabId
+                    }
+                    ,
+                    "Fetch.getResponseBody",
+                    {
+                        requestId: params.requestId
+                    },
+                    () => {
+                        console.log(responseBody)
+                    }
+                )
+            }
+        )
+
+
+        // console.log(response)
+
         //handle target cookies
 
-        console.log(params)
-
+        // console.log(params)
 
         var headerStore = {};
         headerStore['Site'] = 'Nike';
@@ -135,6 +181,10 @@ function onEvent(debuggeeId, message, params) {
         req.setRequestHeader("Content-type", "application/json");
 
         req.send(JSON.stringify(headerStore));
+
+
+
+
 
         req.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -185,4 +235,5 @@ function onEvent(debuggeeId, message, params) {
             errorReason: 'Failed'
         });
     }
+
 }
