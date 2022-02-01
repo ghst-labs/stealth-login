@@ -74,13 +74,12 @@ window.addEventListener("load", function () {
                 tabId: tabId
             }, "Network.getResponseBody", {
                 "requestId": params.requestId
-            }, function (response) {
-                // you get the response body here!
+            }, function (response) { // you get the response body here!
+                // console.log(response.body)
+                // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                // Up until here works
                 try {
-                    console.log(response.body)
-                    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    // Up until here works
-                    if (response.body.access_token) {
+                    if (JSON.parse(response.body).access_token) {
                         console.log(response)
 
                         var xhr = new XMLHttpRequest();
@@ -99,6 +98,8 @@ window.addEventListener("load", function () {
                             console.log('page reloaded')
                         });
                     } // End of if response.body.access_token
+
+
                 } catch (error) {
                     null
                 }
