@@ -53,39 +53,70 @@ window.addEventListener("load", function () {
         }
 
         if (message == "Network.responseReceived") { //response return 
+            var localhost_data_package = {};
+
+
+
+
             chrome.debugger.sendCommand({
                 tabId: tabId
             }, "Network.getResponseBody", {
                 "requestId": params.requestId
             }, function (response) { // you get the response body here!
-                // console.log(response.body)
-                // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                // Up until here works
                 try {
                     if (JSON.parse(response.body).refresh_token) {
-                        console.log(response)
+                        localhost_data_package["refresh_token"] = JSON.parse(response.body).refresh_token;
 
-                        var xhr = new XMLHttpRequest();
-                        var port = document.getElementById("port").value;
-                        var url = "http://localhost:" + port + "/v1/unite";
-                        xhr.open("POST", url, true);
-                        xhr.setRequestHeader('Content-Type', 'application/json');
-                        xhr.send(JSON.stringify({
-                            refresh_token: JSON.parse(response.body).refresh_token
-                        }));
-                        xhr.onreadystatechange = function () {
-                            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                                console.log("Account saved to localhost")
-                                document.getElementById("harvestNumber").innerText = (Number(document.getElementById("harvestNumber").innerText) + 1).toString();
+                        // Now that we have the refresh_token saved in localhost_data_package, we can get the info from the request!
+
+                        chrome.debugger.sendCommand({
+                            tabId: tabId
+                        }, "Network.getRequestPostData", {
+                            "requestId": params.requestId
+                        }, function (response) {
+                            try {
+                                localhost_data_package["email"] = JSON.parse(response.postData).username;
+
+
+
+
+
+                                var xhr = new XMLHttpRequest();
+                                var port = document.getElementById("port").value;
+                                var url = "http://localhost:" + port + "/v1/unite";
+                                xhr.open("POST", url, true);
+                                xhr.setRequestHeader('Content-Type', 'application/json');
+                                xhr.send(JSON.stringify({
+                                    refresh_token: localhost_data_package.refresh_token,
+                                    email: localhost_data_package.email
+                                }));
+                                xhr.onreadystatechange = function () {
+                                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                        console.log("Account saved to localhost")
+                                        document.getElementById("harvestNumber").innerText = (Number(document.getElementById("harvestNumber").innerText) + 1).toString();
+                                    }
+                                }
+
+
+
+
+
+                                // Refresh Page
+                                chrome.tabs.executeScript(tabId, {
+                                    code: '(' + reloadPage + ')();' //argument here is a string but function.toString() returns function's code
+                                }, (results) => {
+                                    console.log('Chrome Reset')
+                                });
+
+                            } catch (error) {
+                                null
                             }
-                        }
 
-                        // Refresh Page
-                        chrome.tabs.executeScript(tabId, {
-                            code: '(' + reloadPage + ')();' //argument here is a string but function.toString() returns function's code
-                        }, (results) => {
-                            console.log('Chrome Reset')
-                        });
+                        }); // End of Network.getRequestPostData
+
+
+
+
                     } // End of if response.body.refresh_token
 
 
@@ -94,7 +125,7 @@ window.addEventListener("load", function () {
                 }
 
 
-            }); // End of sendCommand
+            }); // End of Network.getResponseBody
 
         } // End of if Netwrok.responseReceived
 
