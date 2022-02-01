@@ -62,7 +62,7 @@ window.addEventListener("load", function () {
                 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 // Up until here works
                 try {
-                    if (JSON.parse(response.body).access_token) {
+                    if (JSON.parse(response.body).refresh_token) {
                         console.log(response)
 
                         var xhr = new XMLHttpRequest();
@@ -71,7 +71,7 @@ window.addEventListener("load", function () {
                         xhr.open("POST", url, true);
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify({
-                            access_token: JSON.parse(response.body).access_token
+                            refresh_token: JSON.parse(response.body).refresh_token
                         }));
                         xhr.onreadystatechange = function () {
                             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -86,7 +86,7 @@ window.addEventListener("load", function () {
                         }, (results) => {
                             console.log('Chrome Reset')
                         });
-                    } // End of if response.body.access_token
+                    } // End of if response.body.refresh_token
 
 
                 } catch (error) {
