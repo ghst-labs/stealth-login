@@ -71,7 +71,7 @@ window.addEventListener("load", function () {
                         xhr.open("POST", url, true);
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify({
-                            accessToken: response.access_token
+                            access_token: JSON.parse(response.body).access_token
                         }));
                         xhr.onreadystatechange = function () {
                             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
