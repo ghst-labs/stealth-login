@@ -29,6 +29,7 @@ body {
 #table {
     align-self: center;
     background-color: rgb(10,10,10);
+    border-radius: 10px;
 }
 
 #table td {
