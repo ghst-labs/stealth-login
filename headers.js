@@ -35,7 +35,11 @@ function doStuffWithDom(domContent) {
     console.log('I received the following DOM content:\n' + domContent);
 }
 
-
+window.addEventListener("unload", function () {
+    chrome.debugger.detach({
+        tabId: tabId
+    });
+});
 
 
 window.addEventListener("load", function () {
