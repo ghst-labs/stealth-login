@@ -35,6 +35,9 @@ body {
     padding: 5px;
     color: rgb(80,83,83)
 }
+#table tr {
+    text-align: center;
+}
 
 .table-icon {
     width: 25px;
