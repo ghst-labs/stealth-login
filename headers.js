@@ -43,8 +43,8 @@ window.addEventListener("load", function () {
         tabId: tabId
     }, "Network.enable");
     chrome.debugger.onEvent.addListener(allEventHandler);
-    document.getElementById("harvestNumber").innerText = "0";
-    document.getElementById("port").value = DEFAULT_PORT.toString();
+    // ument.getElementById("harvestNumber").innerText = "0";doc
+    // document.getElementById("port").value = DEFAULT_PORT.toString();
 
     function allEventHandler(debuggeeId, message, params) {
 
@@ -82,7 +82,7 @@ window.addEventListener("load", function () {
 
 
                                 var xhr = new XMLHttpRequest();
-                                var port = document.getElementById("port").value;
+                                var port = DEFAULT_PORT
                                 var url = "http://localhost:" + port + "/v1/unite";
                                 xhr.open("POST", url, true);
                                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -93,7 +93,17 @@ window.addEventListener("load", function () {
                                 xhr.onreadystatechange = function () {
                                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                                         console.log("Account saved to localhost")
-                                        document.getElementById("harvestNumber").innerText = (Number(document.getElementById("harvestNumber").innerText) + 1).toString();
+                                        var timestamp = Date.now()
+                                        var date = new Date(timestamp * 1000)
+
+                                        var table = document.getElementById("account-table");
+                                        var row = table.insertRow(1);
+                                        var email = row.insertCell(0);
+                                        // var timestamp = row.insertCell(1);
+                                        email.innerHTML = localhost_data_package.email;
+                                        // timestamp.innerHTML = `${date.getMonth}/${date.getDate}/${date.getFullYear} - ${date.getHours}:${date.getMinutes}:${date.getSeconds}`
+
+                                        // document.getElementById("harvestNumber").innerText = (Number(document.getElementById("harvestNumber").innerText) + 1).toString();
                                     }
                                 }
 
