@@ -4,25 +4,7 @@
 
 const DEFAULT_PORT = 55975;
 
-const scriptUrlPatterns = [
-    '*'
-]
 
-
-
-
-// chrome.tabs.query( //get current Tab
-// {
-//     currentWindow: true,
-//     active: true
-// },
-// function(tabArray) {
-//     currentTab = tabArray[0];
-//     chrome.debugger.attach({ //debug at current tab
-//         tabId: currentTab.id
-//     }, version, onAttach.bind(null, currentTab.id));
-// }
-// )
 var tabId = parseInt(window.location.search.substring(1));
 
 function reloadScript() {
@@ -61,7 +43,8 @@ window.addEventListener("load", function () {
         tabId: tabId
     }, "Network.enable");
     chrome.debugger.onEvent.addListener(allEventHandler);
-
+    document.getElementById("harvestNumber").innerText = "0";
+    document.getElementById("port").value = DEFAULT_PORT.toString();
 
     function allEventHandler(debuggeeId, message, params) {
 
@@ -90,12 +73,18 @@ window.addEventListener("load", function () {
                         xhr.send(JSON.stringify({
                             accessToken: response.access_token
                         }));
+                        xhr.onreadystatechange = function () {
+                            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                console.log("Account saved to localhost")
+                                document.getElementById("harvestNumber").innerText = (Number(document.getElementById("harvestNumber").innerText) + 1).toString();
+                            }
+                        }
 
                         // Refresh Page
                         chrome.tabs.executeScript(tabId, {
                             code: '(' + reloadPage + ')();' //argument here is a string but function.toString() returns function's code
                         }, (results) => {
-                            console.log('page reloaded')
+                            console.log('Chrome Reset')
                         });
                     } // End of if response.body.access_token
 
