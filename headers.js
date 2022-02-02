@@ -2,40 +2,37 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+
+
+
+
+
+
+
+
 const DEFAULT_PORT = 55975;
 
 
 var tabId = parseInt(window.location.search.substring(1));
 
-function reloadScript() {
-    var scripts = document.getElementsByTagName('script');
-    var firstScriptToDelete = document.querySelector('script[src*="ns_common.js?seed"]');
-    console.log(firstScriptToDelete)
-    firstScriptToDelete.parentNode.removeChild(firstScriptToDelete);
+function navSettings(page) {
+    window.location.href = `./settings/${page}.html`
 
-    //var secondScriptToDelete =  document.querySelector('script[src*="ns_common.js?async"]');
-    //console.log(secondScriptToDelete)
-    //secondScriptToDelete.parentNode.removeChild(secondScriptToDelete);
-
-    var thirdScriptToDelete = document.querySelector('script[src*="js/nordstrom.js"]');
-    console.log(thirdScriptToDelete)
-    thirdScriptToDelete.parentNode.removeChild(thirdScriptToDelete)
-
-    var newScript = document.createElement("script");
-    newScript.src = "https://www.nordstrom.com/mwp/integration/ns_common.js?async";
-    document.head.appendChild(newScript);
-    return "script re-added";
 }
 
 function reloadPage() {
-    location.reload();
+    function uuidv4() {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+    document.location.href = `https://s3.nikecdn.com/unite/mobile.html?androidSDKVersion=2.8.1&backendEnvironment=identity&clientId=qG9fJbnMcBPAMGibPRGI72Zr89l8CD4R&locale=en_US&mid=${uuidv4()}&uxid=com.nike.commerce.snkrs.droid&view=login#{%22event%22%20:%20%22loaded%22}`;
 }
 
-function doStuffWithDom(domContent) {
-    console.log('I received the following DOM content:\n' + domContent);
-}
 
 window.addEventListener("unload", function () {
+    document.getElementById("status").className = "disconnected";
+
     chrome.debugger.detach({
         tabId: tabId
     });
@@ -47,8 +44,35 @@ window.addEventListener("load", function () {
         tabId: tabId
     }, "Network.enable");
     chrome.debugger.onEvent.addListener(allEventHandler);
-    // ument.getElementById("harvestNumber").innerText = "0";doc
-    // document.getElementById("port").value = DEFAULT_PORT.toString();
+
+
+
+    document.getElementById("harvest").addEventListener("click", () => {
+
+        chrome.tabs.executeScript(tabId, {
+            code: '(' + reloadPage + ')();'
+        }, (results) => {
+            console.log('Going to login page')
+        });
+
+    })
+
+    document.getElementById("accounts").addEventListener("click", () => {
+    })
+    document.getElementById("proxies").addEventListener("click", () => {
+        navSettings("proxies")
+    })
+
+    document.getElementById("options").addEventListener("click", () => {
+        console.log("Options has been clicked")
+
+    })
+
+
+
+
+
+
 
     function allEventHandler(debuggeeId, message, params) {
 

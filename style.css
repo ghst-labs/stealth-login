@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(80, 83, 83);
+    background-color: rgb(16, 16, 16);
 }
 
 #container {
@@ -8,21 +8,66 @@ body {
     justify-content: center;
 }
 
-#header {
-    color: rgb(0, 0, 0);
-    text-align: center;
-    height: 10%;
+
+
+
+
+
+#settings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: white;
+    border-radius: 10px;
 }
+.settings {
+    margin-top: 10px;
+    width: 45%;
+    height: auto;
+    text-align: center;
+    background-color: rgb(20, 214, 228);
+    margin: 10px;
+    border-radius: 10px;
+    
+}
+
+.settings:hover {
+    background-color: white;
+    color: rgb(10,10,10);
+    transition: 0.4s;
+}
+
+.connected {
+    width: 5px;
+    height: 5px;
+    background: rgb(80, 250, 46);
+    border-radius: 50%;
+  }
+
+  .disconnected {
+    width: 5px;
+    height: 5px;
+    background: rgb(255, 0, 0);
+    border-radius: 50%;
+  }
+
+
+
+
+
+
+
 
 #logo {
     align-self: center;
-    padding: 20px;
+    padding: 10px;
+    background-color: rgb(16, 16, 16);
+    border-radius: 50%
 }
 #logo img {
     height: 350px;
     width: auto;
-    border-radius: 50%;
-    animation: pulse 1s linear infinite;
+    animation: pulse 2s linear infinite;
 }
 
 
@@ -30,11 +75,12 @@ body {
     align-self: center;
     background-color: rgb(10,10,10);
     border-radius: 10px;
+    margin-top: 25px;
 }
 
 #table td {
     padding: 5px;
-    color: rgb(80,83,83)
+    color: white
 }
 #table tr {
     text-align: center;

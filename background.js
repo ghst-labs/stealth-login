@@ -16,6 +16,9 @@ function onAttach(tabId) {
         alert(chrome.runtime.lastError.message);
         return;
     }
+    chrome.storage.sync.set({ "tabId": tabId }, function () {
+        console.log('Value is set to ' + tabId);
+    });
 
     chrome.windows.create({
         url: "headers.html?" + tabId,

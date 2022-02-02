@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(16, 16, 16);
+    color: white;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+#proxy-input {
+    background-color: rgb(10, 10, 10);
+    color:white
+}
+
+.menu-icons {
+    width: 25px;
+    height: auto;
+    padding: 10px;
+}
+
+
