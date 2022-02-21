@@ -57,17 +57,145 @@ window.addEventListener("load", function () {
 
     })
 
-    document.getElementById("accounts").addEventListener("click", () => {
-    })
-    document.getElementById("proxies").addEventListener("click", () => {
-        navSettings("proxies")
-    })
-
     document.getElementById("options").addEventListener("click", () => {
-        console.log("Options has been clicked")
+        if (document.getElementById("optionsContainer") != null) return
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // Main Options Container
+        const optionsContainer = document.createElement("div");
+        optionsContainer.id = "optionsContainer"
+        // optionsContainer.innerHTML = "Options Container"
+
+
+        // Accounts Input Container
+        const accountsInputContainer = document.createElement("div");
+        accountsInputContainer.id = "accountsInputContainer"
+        accountsInputContainer.classList.add("optionsContainerChildren")
+        optionsContainer.appendChild(accountsInputContainer);
+
+        // Accounts Input Headers
+        const accountsInputHeader = document.createElement("h2");
+        accountsInputHeader.id = "accountsInputHeader"
+        accountsInputHeader.classList.add("optionsContainerChildrenHeader")
+        accountsInputHeader.innerHTML = "Accounts"
+        accountsInputContainer.appendChild(accountsInputHeader)
+
+        // Accounts Input Description
+        const accountsInputDescription = document.createElement("p");
+        accountsInputDescription.id = "accountsInputDescription"
+        accountsInputContainer.appendChild(accountsInputDescription)
+
+
+        const accountsTextArea = this.document.createElement("textarea");
+        accountsTextArea.id = "accountsTextArea"
+        // accountsTextArea.rows = "10"
+        // accountsTextArea.cols = "50"
+        accountsInputContainer.appendChild(accountsTextArea)
+
+
+
+        // Open the options bar
+        document.getElementById("options").classList.remove("deselected");
+        document.getElementById("options").classList.add("selected");
+
+
+
+
+
+        // Settings Container
+        const settingsInputContainer = document.createElement("div");
+        settingsInputContainer.id = "settingsInputContainer"
+        settingsInputContainer.classList.add("optionsContainerChildren")
+        optionsContainer.appendChild(settingsInputContainer);
+
+
+        const settingsButtonContainer = document.createElement("div");
+        settingsButtonContainer.id = "settingsButtonContainer"
+        settingsInputContainer.appendChild(settingsButtonContainer)
+
+
+        // Auto Fill Enable Slider --- Start
+
+        // Header
+        const enableAutoFillDiv = document.createElement("div");
+        enableAutoFillDiv.id = "enableAutoFillDiv"
+
+        const enableAutoFillHeader = document.createElement("h3");
+        enableAutoFillHeader.innerHTML = "Auto-Fill"
+        enableAutoFillDiv.appendChild(enableAutoFillHeader)
+
+        // Button
+        const enableAutoFill = document.createElement("label");
+        enableAutoFill.classList.add("switch")
+
+        const enableAutoFillCheckbox = document.createElement("input")
+        enableAutoFillCheckbox.type = "checkbox"
+        enableAutoFillCheckbox.id = "enableAutoClickInput"
+        enableAutoFill.appendChild(enableAutoFillCheckbox)
+
+
+        const enableAutoFillSlider = document.createElement("span")
+        enableAutoFillSlider.classList.add("slider", "round")
+        enableAutoFill.appendChild(enableAutoFillSlider)
+
+
+
+        // 
+
+
+
+        enableAutoFillDiv.appendChild(enableAutoFill)
+        settingsButtonContainer.appendChild(enableAutoFillDiv)
+
+        // Autofill Enable Slider --- Start End
+
+
+        // Auto-Click Enable Slider --- Start
+
+        // Header
+        const enableAutoClickDiv = document.createElement("div");
+        enableAutoClickDiv.id = "enableAutoClickDiv"
+
+        const enableAutoClickHeader = document.createElement("h3");
+        enableAutoClickHeader.innerHTML = "Auto-Click"
+        enableAutoClickDiv.appendChild(enableAutoClickHeader)
+
+        // Button
+        const enableAutoClick = document.createElement("label");
+        enableAutoClick.classList.add("switch")
+
+        const enableAutoClickCheckbox = document.createElement("input")
+        enableAutoClickCheckbox.type = "checkbox"
+        enableAutoFillCheckbox.id = "enableAutoClickInput"
+        enableAutoClick.appendChild(enableAutoClickCheckbox)
+
+        const enableAutoClickSlider = document.createElement("span")
+        enableAutoClickSlider.classList.add("slider", "round")
+        enableAutoClick.appendChild(enableAutoClickSlider)
+
+
+
+        // 
+
+
+
+        enableAutoClickDiv.appendChild(enableAutoClick)
+        settingsButtonContainer.appendChild(enableAutoClickDiv)
+
+        // Autofill Enable Slider --- Start End
+
+
+        // Attatch Options Menu to Options bar
+        document.getElementById("options").appendChild(optionsContainer);
+
+
+        document.getElementById("optionsHeader").remove();
+
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
     })
-
 
 
 
