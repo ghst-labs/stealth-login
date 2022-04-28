@@ -130,6 +130,17 @@ body {
   margin: 2%;
 }
 
+input {
+  color: white;
+  max-width: 90%;
+  min-width: 90%;
+  border-radius: 10px;
+  padding: 1%;
+  background-color: rgb(16, 16, 16);
+  border-color: rgb(16, 16, 16);
+  transition: 0.1s;
+}
+
 textarea {
   /* border:1px solid #999999; */
   color: white;
