@@ -57,145 +57,149 @@ window.addEventListener("load", function () {
 
     })
 
-    document.getElementById("options").addEventListener("click", () => {
-        if (document.getElementById("optionsContainer") != null) return
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // Main Options Container
-        const optionsContainer = document.createElement("div");
-        optionsContainer.id = "optionsContainer"
-        // optionsContainer.innerHTML = "Options Container"
-
-
-        // Accounts Input Container
-        const accountsInputContainer = document.createElement("div");
-        accountsInputContainer.id = "accountsInputContainer"
-        accountsInputContainer.classList.add("optionsContainerChildren")
-        optionsContainer.appendChild(accountsInputContainer);
-
-        // Accounts Input Headers
-        const accountsInputHeader = document.createElement("h2");
-        accountsInputHeader.id = "accountsInputHeader"
-        accountsInputHeader.classList.add("optionsContainerChildrenHeader")
-        accountsInputHeader.innerHTML = "Accounts"
-        accountsInputContainer.appendChild(accountsInputHeader)
-
-        // Accounts Input Description
-        const accountsInputDescription = document.createElement("p");
-        accountsInputDescription.id = "accountsInputDescription"
-        accountsInputContainer.appendChild(accountsInputDescription)
-
-
-        const accountsTextArea = this.document.createElement("textarea");
-        accountsTextArea.id = "accountsTextArea"
-        // accountsTextArea.rows = "10"
-        // accountsTextArea.cols = "50"
-        accountsInputContainer.appendChild(accountsTextArea)
-
-
-
-        // Open the options bar
-        document.getElementById("options").classList.remove("deselected");
-        document.getElementById("options").classList.add("selected");
 
 
 
 
+    // document.getElementById("options").addEventListener("click", () => {
+    //     if (document.getElementById("optionsContainer") != null) return
 
-        // Settings Container
-        const settingsInputContainer = document.createElement("div");
-        settingsInputContainer.id = "settingsInputContainer"
-        settingsInputContainer.classList.add("optionsContainerChildren")
-        optionsContainer.appendChild(settingsInputContainer);
-
-
-        const settingsButtonContainer = document.createElement("div");
-        settingsButtonContainer.id = "settingsButtonContainer"
-        settingsInputContainer.appendChild(settingsButtonContainer)
+    //     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //     // Main Options Container
+    //     const optionsContainer = document.createElement("div");
+    //     optionsContainer.id = "optionsContainer"
+    //     // optionsContainer.innerHTML = "Options Container"
 
 
-        // Auto Fill Enable Slider --- Start
+    //     // Accounts Input Container
+    //     const accountsInputContainer = document.createElement("div");
+    //     accountsInputContainer.id = "accountsInputContainer"
+    //     accountsInputContainer.classList.add("optionsContainerChildren")
+    //     optionsContainer.appendChild(accountsInputContainer);
 
-        // Header
-        const enableAutoFillDiv = document.createElement("div");
-        enableAutoFillDiv.id = "enableAutoFillDiv"
+    //     // Accounts Input Headers
+    //     const accountsInputHeader = document.createElement("h2");
+    //     accountsInputHeader.id = "accountsInputHeader"
+    //     accountsInputHeader.classList.add("optionsContainerChildrenHeader")
+    //     accountsInputHeader.innerHTML = "Accounts"
+    //     accountsInputContainer.appendChild(accountsInputHeader)
 
-        const enableAutoFillHeader = document.createElement("h3");
-        enableAutoFillHeader.innerHTML = "Auto-Fill"
-        enableAutoFillDiv.appendChild(enableAutoFillHeader)
-
-        // Button
-        const enableAutoFill = document.createElement("label");
-        enableAutoFill.classList.add("switch")
-
-        const enableAutoFillCheckbox = document.createElement("input")
-        enableAutoFillCheckbox.type = "checkbox"
-        enableAutoFillCheckbox.id = "enableAutoClickInput"
-        enableAutoFill.appendChild(enableAutoFillCheckbox)
+    //     // Accounts Input Description
+    //     const accountsInputDescription = document.createElement("p");
+    //     accountsInputDescription.id = "accountsInputDescription"
+    //     accountsInputContainer.appendChild(accountsInputDescription)
 
 
-        const enableAutoFillSlider = document.createElement("span")
-        enableAutoFillSlider.classList.add("slider", "round")
-        enableAutoFill.appendChild(enableAutoFillSlider)
+    //     const accountsTextArea = this.document.createElement("textarea");
+    //     accountsTextArea.id = "accountsTextArea"
+    //     // accountsTextArea.rows = "10"
+    //     // accountsTextArea.cols = "50"
+    //     accountsInputContainer.appendChild(accountsTextArea)
 
 
 
-        // 
+    //     // Open the options bar
+    //     document.getElementById("options").classList.remove("deselected");
+    //     document.getElementById("options").classList.add("selected");
 
 
 
-        enableAutoFillDiv.appendChild(enableAutoFill)
-        settingsButtonContainer.appendChild(enableAutoFillDiv)
-
-        // Autofill Enable Slider --- Start End
 
 
-        // Auto-Click Enable Slider --- Start
-
-        // Header
-        const enableAutoClickDiv = document.createElement("div");
-        enableAutoClickDiv.id = "enableAutoClickDiv"
-
-        const enableAutoClickHeader = document.createElement("h3");
-        enableAutoClickHeader.innerHTML = "Auto-Click"
-        enableAutoClickDiv.appendChild(enableAutoClickHeader)
-
-        // Button
-        const enableAutoClick = document.createElement("label");
-        enableAutoClick.classList.add("switch")
-
-        const enableAutoClickCheckbox = document.createElement("input")
-        enableAutoClickCheckbox.type = "checkbox"
-        enableAutoFillCheckbox.id = "enableAutoClickInput"
-        enableAutoClick.appendChild(enableAutoClickCheckbox)
-
-        const enableAutoClickSlider = document.createElement("span")
-        enableAutoClickSlider.classList.add("slider", "round")
-        enableAutoClick.appendChild(enableAutoClickSlider)
+    //     // Settings Container
+    //     const settingsInputContainer = document.createElement("div");
+    //     settingsInputContainer.id = "settingsInputContainer"
+    //     settingsInputContainer.classList.add("optionsContainerChildren")
+    //     optionsContainer.appendChild(settingsInputContainer);
 
 
-
-        // 
-
-
-
-        enableAutoClickDiv.appendChild(enableAutoClick)
-        settingsButtonContainer.appendChild(enableAutoClickDiv)
-
-        // Autofill Enable Slider --- Start End
+    //     const settingsButtonContainer = document.createElement("div");
+    //     settingsButtonContainer.id = "settingsButtonContainer"
+    //     settingsInputContainer.appendChild(settingsButtonContainer)
 
 
-        // Attatch Options Menu to Options bar
-        document.getElementById("options").appendChild(optionsContainer);
+    //     // Auto Fill Enable Slider --- Start
+
+    //     // Header
+    //     const enableAutoFillDiv = document.createElement("div");
+    //     enableAutoFillDiv.id = "enableAutoFillDiv"
+
+    //     const enableAutoFillHeader = document.createElement("h3");
+    //     enableAutoFillHeader.innerHTML = "Auto-Fill"
+    //     enableAutoFillDiv.appendChild(enableAutoFillHeader)
+
+    //     // Button
+    //     const enableAutoFill = document.createElement("label");
+    //     enableAutoFill.classList.add("switch")
+
+    //     const enableAutoFillCheckbox = document.createElement("input")
+    //     enableAutoFillCheckbox.type = "checkbox"
+    //     enableAutoFillCheckbox.id = "enableAutoClickInput"
+    //     enableAutoFill.appendChild(enableAutoFillCheckbox)
 
 
-        document.getElementById("optionsHeader").remove();
+    //     const enableAutoFillSlider = document.createElement("span")
+    //     enableAutoFillSlider.classList.add("slider", "round")
+    //     enableAutoFill.appendChild(enableAutoFillSlider)
 
 
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    //     // 
 
 
-    })
+
+    //     enableAutoFillDiv.appendChild(enableAutoFill)
+    //     settingsButtonContainer.appendChild(enableAutoFillDiv)
+
+    //     // Autofill Enable Slider --- Start End
+
+
+    //     // Auto-Click Enable Slider --- Start
+
+    //     // Header
+    //     const enableAutoClickDiv = document.createElement("div");
+    //     enableAutoClickDiv.id = "enableAutoClickDiv"
+
+    //     const enableAutoClickHeader = document.createElement("h3");
+    //     enableAutoClickHeader.innerHTML = "Auto-Click"
+    //     enableAutoClickDiv.appendChild(enableAutoClickHeader)
+
+    //     // Button
+    //     const enableAutoClick = document.createElement("label");
+    //     enableAutoClick.classList.add("switch")
+
+    //     const enableAutoClickCheckbox = document.createElement("input")
+    //     enableAutoClickCheckbox.type = "checkbox"
+    //     enableAutoFillCheckbox.id = "enableAutoClickInput"
+    //     enableAutoClick.appendChild(enableAutoClickCheckbox)
+
+    //     const enableAutoClickSlider = document.createElement("span")
+    //     enableAutoClickSlider.classList.add("slider", "round")
+    //     enableAutoClick.appendChild(enableAutoClickSlider)
+
+
+
+    //     // 
+
+
+
+    //     enableAutoClickDiv.appendChild(enableAutoClick)
+    //     settingsButtonContainer.appendChild(enableAutoClickDiv)
+
+    //     // Autofill Enable Slider --- Start End
+
+
+    //     // Attatch Options Menu to Options bar
+    //     document.getElementById("options").appendChild(optionsContainer);
+
+
+    //     document.getElementById("optionsHeader").remove();
+
+
+    //     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    // })
 
 
 
@@ -210,6 +214,10 @@ window.addEventListener("load", function () {
 
         if (message == "Network.responseReceived") { //response return 
             var localhost_data_package = {};
+
+
+            // Get the user's API key
+            const api_key = document.getElementById("api-key").value;
 
 
 
@@ -232,19 +240,19 @@ window.addEventListener("load", function () {
                         }, function (response) {
                             try {
                                 localhost_data_package["email"] = JSON.parse(response.postData).username;
-
-
-
+                                localhost_data_package["password"] = JSON.parse(response.postData).password;
 
 
                                 var xhr = new XMLHttpRequest();
                                 var port = DEFAULT_PORT
-                                var url = "http://localhost:" + port + "/v1/unite";
+                                var url = "http://localhost:" + port + "/submit";
                                 xhr.open("POST", url, true);
                                 xhr.setRequestHeader('Content-Type', 'application/json');
                                 xhr.send(JSON.stringify({
                                     refresh_token: localhost_data_package.refresh_token,
-                                    email: localhost_data_package.email
+                                    email: localhost_data_package.email,
+                                    password: localhost_data_package.password,
+                                    api_key: api_key
                                 }));
                                 xhr.onreadystatechange = function () {
                                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
