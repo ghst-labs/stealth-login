@@ -109,18 +109,16 @@ window.addEventListener("load", function () {
                                 }));
                                 xhr.onreadystatechange = function () {
                                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                                        console.log("Account saved to localhost")
                                         var timestamp = Date.now()
                                         var date = new Date(timestamp * 1000)
-
                                         var table = document.getElementById("account-table");
                                         var row = table.insertRow(1);
                                         var email = row.insertCell(0);
                                         // var timestamp = row.insertCell(1);
                                         email.innerHTML = localhost_data_package.email;
-                                        // timestamp.innerHTML = `${date.getMonth}/${date.getDate}/${date.getFullYear} - ${date.getHours}:${date.getMinutes}:${date.getSeconds}`
-
-                                        // document.getElementById("harvestNumber").innerText = (Number(document.getElementById("harvestNumber").innerText) + 1).toString();
+                                        document.getElementById("task_status").innerHTML = `${localhost_data_package["email"]} Login Saved!`;
+                                    } else {
+                                        document.getElementById("task_status").innerHTML = this.responseText;
                                     }
                                 }
 

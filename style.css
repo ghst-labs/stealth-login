@@ -37,14 +37,10 @@ body {
   border-radius: 10px;
 }
 
-.full-bar.selected {
-  color: white;
-  background-color: rgb(10, 10, 10);
-  height: 200px;
+.full-bar.status {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   /* transition: 10s; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .full-bar.deselected:hover {

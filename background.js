@@ -24,7 +24,7 @@ function onAttach(tabId) {
         url: "headers.html?" + tabId,
         type: "popup",
         width: 550,
-        height: 800
+        height: 900
     });
 }
 
