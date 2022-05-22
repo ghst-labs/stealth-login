@@ -1,19 +1,18 @@
 body {
-    background-color: rgb(16, 16, 16);
+  background-color: rgb(16, 16, 16);
 }
 
 #container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
 
 #logo {
   align-self: center;
   padding: 10px;
   background-color: rgb(16, 16, 16);
-  border-radius: 50%
+  border-radius: 50%;
 }
 #logo img {
   height: 250px;
@@ -22,106 +21,92 @@ body {
 }
 
 #settings {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    color: white;
-    border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: white;
+  border-radius: 10px;
 }
 .full-bar {
-    margin-top: 10px;
-    width: 90%;
-    height: auto;
-    text-align: center;
-    background-color: rgb(20, 214, 228);
-    margin: 10px;
-    border-radius: 10px;
-    
+  margin-top: 10px;
+  width: 90%;
+  height: auto;
+  text-align: center;
+  background-color: rgb(20, 214, 228);
+  margin: 10px;
+  border-radius: 10px;
 }
 
-.full-bar.selected { 
-    color: white;
-    background-color: rgb(10,10,10);
-    height: 200px;
-    /* transition: 10s; */
-    display: flex;  
-    flex-direction: column;
-    justify-content: center;
-  }
-
+.full-bar.status {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  /* transition: 10s; */
+}
 
 .full-bar.deselected:hover {
-    background-color: white;
-    color: rgb(10,10,10);
-    transition: 0.4s;
+  background-color: white;
+  color: rgb(10, 10, 10);
+  transition: 0.4s;
 }
+ 
+#api_key {
+  margin-bottom: 15px;
+}
+
+
+.autofill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+#save-autofill:hover {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+  transition: 0.4s;
+}
+
+
+
 
 
 
 
 #table {
-    align-self: center;
-    background-color: rgb(10,10,10);
-    border-radius: 10px;
-    margin-top: 25px;
+  align-self: center;
+  background-color: rgb(10, 10, 10);
+  border-radius: 10px;
+  margin-top: 25px;
 }
 
 #table td {
-    padding: 5px;
-    color: white
+  padding: 5px;
+  color: white;
 }
 #table tr {
-    text-align: center;
+  text-align: center;
 }
 
 .table-icon {
-    width: 25px;
-    height: auto;
+  width: 25px;
+  height: auto;
 }
-
-
-
-
-
 
 @-webkit-keyframes "pulse" {
-0% {
- -webkit-transform: scale(0.9);
- transform: scale(0.9);
-}
-50% {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  50% {
     -webkit-transform: scale(1);
     transform: scale(1);
- }
-100% {
- -webkit-transform: scale(0.9);
-transform: scale(0.9);
-}
-}
-
-<<<<<<< Updated upstream
-
-.optionsContainerChildren{
-width: 40%;
+  }
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 }
 
-
-
-
-#optionsContainer {
-    color: white;
-    background-color: rgb(10,10,10);
-    width: 90%;
-    border-radius: 10px;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-} 
-
-.optionsContainerChildren {
-    margin: 2%;
-=======
 input {
   color: white;
   max-width: 90%;
@@ -131,42 +116,29 @@ input {
   background-color: rgb(16, 16, 16);
   border-color: rgb(16, 16, 16);
   transition: 0.1s;
->>>>>>> Stashed changes
 }
 
 textarea {
-    /* border:1px solid #999999; */
-    color: white;
-    max-width: 90%;
-    min-width: 90%;
-    height: 80%;
-    margin: 5px;
-    padding: 1%;
-    border-radius: 10px;
-    background-color: rgb(16, 16, 16);
-    border-color: rgb(16, 16, 16);
-    transition: 0.1s;
-    /* box-shadow: 0 0 10px rgb(114, 246, 255); */
+  /* border:1px solid #999999; */
+  color: white;
+  max-width: 90%;
+  min-width: 90%;
+  height: 80%;
+  margin: 5px;
+  padding: 1%;
+  border-radius: 10px;
+  background-color: rgb(16, 16, 16);
+  border-color: rgb(16, 16, 16);
+  transition: 0.1s;
+  /* box-shadow: 0 0 10px rgb(114, 246, 255); */
 }
-textarea:focus { 
+textarea:focus {
   outline: none !important;
   border-color: rgb(16, 16, 16);
   box-shadow: 0 0 3px rgb(114, 246, 255);
   transition: 0.1s;
 }
 
-<<<<<<< Updated upstream
-
-
-#settingsButtonContainer {
-}
-
-
-
-
-
-
-=======
 .options {
   display: flex;
   flex-direction: column;
@@ -231,68 +203,7 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
 }
->>>>>>> Stashed changes
 
-
-/* The switch - the box around the slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 30px;
-    height: 17px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 13px;
-    width: 13px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: rgb(20, 214, 228);
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px rgb(20, 214, 228);
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(13px);
-    -ms-transform: translateX(13px);
-    transform: translateX(13px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 17px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.slider.round:before {
+  border-radius: 50%;
+}
