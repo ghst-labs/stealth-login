@@ -24,7 +24,11 @@ function onAttach(tabId) {
         url: "headers.html?" + tabId,
         type: "popup",
         width: 550,
+<<<<<<< Updated upstream
         height: 800
+=======
+        height: 1100
+>>>>>>> Stashed changes
     });
 }
 

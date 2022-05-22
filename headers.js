@@ -29,7 +29,6 @@ function reloadPage() {
     document.location.href = `https://s3.nikecdn.com/unite/mobile.html?androidSDKVersion=2.8.1&backendEnvironment=identity&clientId=qG9fJbnMcBPAMGibPRGI72Zr89l8CD4R&locale=en_US&mid=${uuidv4()}&uxid=com.nike.commerce.snkrs.droid&view=login#{%22event%22%20:%20%22loaded%22}`;
 }
 
-
 window.addEventListener("unload", function () {
     document.getElementById("status").className = "disconnected";
 
@@ -40,6 +39,7 @@ window.addEventListener("unload", function () {
 
 
 window.addEventListener("load", function () {
+<<<<<<< Updated upstream
     chrome.debugger.sendCommand({
         tabId: tabId
     }, "Network.enable");
@@ -288,6 +288,165 @@ window.addEventListener("load", function () {
 
                 } catch (error) {
                     null
+=======
+  chrome.debugger.sendCommand(
+    {
+      tabId: tabId,
+    },
+    "Network.enable"
+  );
+  chrome.debugger.onEvent.addListener(allEventHandler);
+
+  document.getElementById("harvest").addEventListener("click", () => {
+    chrome.tabs.executeScript(
+      tabId,
+      {
+        code: "(" + reloadPage + ")();",
+      },
+      (results) => {
+        console.log("Going to login page");
+      }
+    );
+  });
+
+  function allEventHandler(debuggeeId, message, params) {
+    if (tabId != debuggeeId.tabId) {
+      return;
+    }
+    // test@gmail.com:password
+
+    let autofill_lines = document.getElementById("autofill").value.split("\n");
+
+    if (document.getElementById("autofill-checkbox").checked) {
+      chrome.tabs.executeScript(
+        tabId,
+        {
+          code:
+            `
+          function autofillEmailPass() {
+            const tags = document.getElementsByTagName("input");
+            tags.item(1).value = "` +
+            autofill_lines[0].split(":")[0] +
+            `";
+            tags.item(2).value = "` +
+            autofill_lines[0].split(":")[1] +
+            `";
+          };
+          autofillEmailPass();
+          `,
+        },
+        (results) => {
+          console.log(results);
+        }
+      );
+    }
+    if (message == "Network.responseReceived") {
+      //response return
+      var localhost_data_package = {};
+
+      chrome.debugger.sendCommand(
+        {
+          tabId: tabId,
+        },
+        "Network.getResponseBody",
+        {
+          requestId: params.requestId,
+        },
+        function (response) {
+          // you get the response body here!
+          try {
+            if (JSON.parse(response.body).refresh_token) {
+              localhost_data_package["refresh_token"] = JSON.parse(
+                response.body
+              ).refresh_token;
+
+              // Now that we have the refresh_token saved in localhost_data_package, we can get the info from the request!
+
+              chrome.debugger.sendCommand(
+                {
+                  tabId: tabId,
+                },
+                "Network.getRequestPostData",
+                {
+                  requestId: params.requestId,
+                },
+                function (response) {
+                  try {
+                    var api_key = document.getElementById("api_key").value;
+                    localhost_data_package["email"] = JSON.parse(
+                      response.postData
+                    ).username;
+                    localhost_data_package["password"] = JSON.parse(
+                      response.postData
+                    ).password;
+                    localhost_data_package["api_key"] = api_key;
+
+                    console.log(localhost_data_package);
+                    var xhr = new XMLHttpRequest();
+                    var port = DEFAULT_PORT;
+                    if (
+                      document.getElementById("remote-login-checkbox").checked
+                    ) {
+                      var url =
+                        "https://stealth-token-store.herokuapp.com/v1/unite";
+                    } else {
+                      var url = "http://localhost:" + port + "/v1/unite";
+                    }
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(
+                      JSON.stringify({
+                        refresh_token: localhost_data_package.refresh_token,
+                        email: localhost_data_package.email,
+                        password: localhost_data_package.password,
+                        api_key: api_key,
+                      })
+                    );
+                    xhr.onreadystatechange = function () {
+                      if (
+                        this.readyState === XMLHttpRequest.DONE &&
+                        this.status === 200
+                      ) {
+                        var timestamp = Date.now();
+                        var date = new Date(timestamp * 1000);
+                        var table = document.getElementById("account-table");
+                        var row = table.insertRow(1);
+                        var email = row.insertCell(0);
+                        // var timestamp = row.insertCell(1);
+                        email.innerHTML = localhost_data_package.email;
+                        document.getElementById(
+                          "task_status"
+                        ).innerHTML = `${localhost_data_package["email"]} Login Saved!`;
+                      } else {
+                        document.getElementById("task_status").innerHTML =
+                          this.responseText;
+                      }
+                    };
+
+                    // Refresh Page
+                    chrome.tabs.executeScript(
+                      tabId,
+                      {
+                        code: "(" + reloadPage + ")();", //argument here is a string but function.toString() returns function's code
+                      },
+                      (results) => {
+                        console.log("Chrome Reset");
+                        if (
+                          document.getElementById("autofill-checkbox").checked
+                        ) {
+                          let autofill_array = document
+                            .getElementById("autofill")
+                            .value.split("\n");
+                          removed_login = autofill_array.shift();
+                          document.getElementById("autofill").value =
+                            autofill_array.toString().replace(",", "\n");
+                        }
+                      }
+                    );
+                  } catch (error) {
+                    alert("Error: " + error);
+                  }
+>>>>>>> Stashed changes
                 }
 
 

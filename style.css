@@ -99,6 +99,7 @@ transform: scale(0.9);
 }
 }
 
+<<<<<<< Updated upstream
 
 .optionsContainerChildren{
 width: 40%;
@@ -120,6 +121,17 @@ width: 40%;
 
 .optionsContainerChildren {
     margin: 2%;
+=======
+input {
+  color: white;
+  max-width: 90%;
+  min-width: 90%;
+  border-radius: 10px;
+  padding: 1%;
+  background-color: rgb(16, 16, 16);
+  border-color: rgb(16, 16, 16);
+  transition: 0.1s;
+>>>>>>> Stashed changes
 }
 
 textarea {
@@ -143,6 +155,7 @@ textarea:focus {
   transition: 0.1s;
 }
 
+<<<<<<< Updated upstream
 
 
 #settingsButtonContainer {
@@ -153,6 +166,72 @@ textarea:focus {
 
 
 
+=======
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.options-item {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+.switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #00ff99;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+>>>>>>> Stashed changes
 
 
 /* The switch - the box around the slider */
